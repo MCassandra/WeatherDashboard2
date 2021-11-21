@@ -22,8 +22,13 @@ const getCityWeather = function(city){
 const submitSearch = function(e){
     e.preventDefault();
     const city = cityInputEl.value.trim();
-    getCityWeather(city)
-}
+    getCityWeather(city);
+    saveSearch();
+};
+
+const saveSearch = function(){
+    localStorage.setItem("cities", JSON.stringify(cities));
+};
 
 // display the weather data from city search
 function displayWeatherData(weather,searchCity){
@@ -47,8 +52,7 @@ function displayWeatherData(weather,searchCity){
      windSpeedEl.textContent = "Wind Speed: " + weather.wind.speed + " MPH";
      windSpeedEl.classList = "list-group-item"
      weatherContainerEl.appendChild(windSpeedEl);
-    // const lat = weather.coord.lat;
-  	// const lon = weather.coord.lon;
+    
   	// const description = description.weather[0].description;
   	// const icon = json.weather[0].icon;
   	// const imageSRC = `http://openweathermap.org/img/wn/${icon}@2x.png`;
@@ -59,6 +63,38 @@ function displayWeatherData(weather,searchCity){
    citySearchInputEl.appendChild(weatherIcon);
   	// img.src = imageSRC;
   	// document.body.append(img);
+       // grab lat and lon for uv index
+     const lat = weather.coord.lat;
+     const lon = weather.coord.lon;
+      uvIndex(lat,lon);
+};
+
+const uvIndex = function(lat,lon){
+    var url = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`
+    fetch(url)
+    .then(function(response){
+        response.json().then(function(data){
+            displayUvIndex(data)
+           // console.log(data)
+        });
+    });
+
 }
+const displayUvIndex = function(index){
+        var uvIndexEl = document.createElement("div");
+        uvIndexEl.textContent = "UV Index: "
+        uvIndexEl.classList = "list-group-item"
+    
+        uvIndexValue = document.createElement("span")
+        uvIndexValue.textContent = index.value;
+    
+       
+    
+        uvIndexEl.appendChild(uvIndexValue);
+    
+        //append index to current weather
+        weatherContainerEl.appendChild(uvIndexEl);
+    };
+
 
 cityFormEl.addEventListener("submit", submitSearch);

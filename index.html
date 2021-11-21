@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,19 +9,28 @@
     <link rel="stylesheet" href="./style.css">
     <title>What's the Weather?</title>
 </head>
+
 <body>
     <header>
         <h1>Weather Dashboard</h1>
     </header>
     <main class="container-fluid">
-        <div class = "row">
-            
-                <form class = "border p-2" id = "city-search-form">
-                    <h4>Search for a City</h2>
-                    <input id="city" type = "text"  class = "form-input"/>
-                    <button class = "btn btn-primary" type = "submit">Search</button>
-                </form>
-           
+        <div class="row">
+
+            <form class="border p-2" id="city-search-form">
+                <h4>Search for a City</h2>
+                    <input id="city" type="text" class="form-input" />
+                    <button class="btn btn-primary" type="submit">Search</button>
+            </form>
+            <div class="past-search border" id="past-search-buttons"></div>
+            <div class="row border selected-city" id="current-forecast">
+                <h2 id="searched-city"></h2>
+                <div id="current-weather-container" class="list-group"></div>
+            </div>
+            <div class="row border" id="five-day-forecast">
+                <h2 class="col-12" id="forecast"></h2>
+                <div class="d-flex" id="fiveday-container"></div>
+            </div>
         </div>
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -28,4 +38,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <script src="./script.js"></script>
 </body>
+
 </html>

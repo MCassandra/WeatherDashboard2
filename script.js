@@ -154,8 +154,8 @@ function displayfiveDays(weather){
 function previousSearch(previousSearch){
     const previousSearchEl = document.createElement("button");
     previousSearchEl.textContent = previousSearch;
-    previousSearchEl.classList = "d-flex w-100 btn-light border p-2";
-    previousSearchEl.setAttribute("data-city",previousSearchEl)
+    previousSearchEl.classList = "d-flex w-100 btn btn-info border p-2";
+    previousSearchEl.setAttribute("data-city",previousSearch)
     previousSearchEl.setAttribute("type", "submit");
 
     previousSearchButtonEl.prepend(previousSearchEl);

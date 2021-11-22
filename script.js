@@ -113,16 +113,13 @@ function fiveDays(city) {
 function displayfiveDays(weather) {
     forecastContainerEl.textContent = ""
     forecastTitle.textContent = "Next 5 Day Forecast:";
-
+    // store weather.list object into a variable
     const forecast = weather.list;
     for (var i = 5; i < forecast.length; i = i + 8) {
         const dailyForecast = forecast[i];
 
-
         const forecastEl = document.createElement("div");
         forecastEl.classList = "card text-white bg-info mb-3";
-
-        //console.log(dailyForecast)
 
         //create date element
         const forecastDate = document.createElement("h5")
@@ -174,5 +171,6 @@ function previousSearchHandler(e) {
     };
 };
 
+// event listeners
 cityFormEl.addEventListener("submit", submitSearch);
 previousSearchButtonEl.addEventListener("click", previousSearchHandler)

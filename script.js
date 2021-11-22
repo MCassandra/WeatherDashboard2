@@ -163,7 +163,7 @@ function previousSearch(previousSearch) {
     previousSearchEl.setAttribute("data-city", previousSearch)
     previousSearchEl.setAttribute("type", "submit");
 
-    previousSearchButtonEl.prepend(previousSearchEl);
+    previousSearchButtonEl.append(previousSearchEl);
 };
 
 function previousSearchHandler(e) {

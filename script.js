@@ -8,7 +8,7 @@ const forecastTitle = document.getElementById("forecast");
 const forecastContainerEl = document.getElementById("fiveday-container");
 
 // make initial api call
-const getCityWeather = function (city) {
+function getCityWeather(city) {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
     fetch(url)
         .then(function (response) {
@@ -19,7 +19,7 @@ const getCityWeather = function (city) {
 };
 
 // submit search for city
-const submitSearch = function (e) {
+function submitSearch(e){
     e.preventDefault();
     const city = cityInputEl.value.trim();
     getCityWeather(city);
@@ -27,7 +27,7 @@ const submitSearch = function (e) {
     saveSearch();
 };
 
-const saveSearch = function () {
+function saveSearch() {
     localStorage.setItem("cities", JSON.stringify(cities));
 };
 
@@ -67,7 +67,7 @@ function displayWeatherData(weather, searchCity) {
     uvIndex(lat, lon);
 };
 
-const uvIndex = function (lat, lon) {
+function uvIndex(lat,lon) {
     const url = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`
     fetch(url)
         .then(function (response) {
@@ -77,8 +77,9 @@ const uvIndex = function (lat, lon) {
             });
         });
 
-}
-const displayUvIndex = function (index) {
+};
+
+function displayUvIndex(index) {
     const uvIndexEl = document.createElement("div");
     uvIndexEl.textContent = "UV Index: "
     uvIndexEl.classList = "list-group-item"
@@ -91,7 +92,7 @@ const displayUvIndex = function (index) {
 };
 
 
-const fiveDays = function (city) {
+function fiveDays(city){
     const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`
     fetch(url)
         .then(function (response) {
@@ -101,7 +102,7 @@ const fiveDays = function (city) {
         });
 };
 
-const displayfiveDays = function (weather) {
+function displayfiveDays(weather){
     forecastContainerEl.textContent = ""
     forecastTitle.textContent = "Next 5 Day Forecast:";
 

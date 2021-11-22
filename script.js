@@ -3,9 +3,9 @@ const cities = [];
 const cityFormEl = document.getElementById("city-search-form");
 const citySearchInputEl = document.getElementById("searched-city");
 const cityInputEl = document.getElementById("city");
-const weatherContainerEl = document.getElementById("current-weather-container");
+const weatherContainerEl = document.getElementById("current-weather");
 const forecastTitle = document.getElementById("forecast");
-const forecastContainerEl = document.getElementById("fiveday-container");
+const forecastContainerEl = document.getElementById("fiveday-forcast");
 const previousSearchButtonEl = document.getElementById("previous-search-buttons");
 
 

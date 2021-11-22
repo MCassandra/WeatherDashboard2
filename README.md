@@ -17,7 +17,7 @@ I want to create a trip knowing what the weather is.
 3. Searced cities are saved.  
 4. When saved cities are clicked, their weather information can be seen. 
 
-![screenshot of weather dashboard app](assets/screenshot.jpeg)
+![screenshot of weather dashboard app](assets/screenshotweather.png)
 
 gitHub Repo: https://github.com/MCassandra/WeatherDashboard2   
 

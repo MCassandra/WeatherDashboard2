@@ -6,6 +6,8 @@ const cityInputEl = document.getElementById("city");
 const weatherContainerEl = document.getElementById("current-weather-container");
 const forecastTitle = document.getElementById("forecast");
 const forecastContainerEl = document.getElementById("fiveday-container");
+const previousSearchButtonEl = document.querySelector("#past-search-buttons");
+
 
 // make initial api call
 function getCityWeather(city) {
@@ -24,7 +26,8 @@ function submitSearch(e){
     const city = cityInputEl.value.trim();
     getCityWeather(city);
     fiveDays(city);
-    saveSearch();
+    saveSearch(city);
+    previousSearch(city);
 };
 
 function saveSearch() {
@@ -148,5 +151,23 @@ function displayfiveDays(weather){
 
 };
 
+function previousSearch(previousSearch){
+    const previousSearchEl = document.createElement("button");
+    previousSearchEl.textContent = previousSearch;
+    previousSearchEl.classList = "d-flex w-100 btn-light border p-2";
+    previousSearchEl.setAttribute("data-city",previousSearchEl)
+    previousSearchEl.setAttribute("type", "submit");
+
+    previousSearchButtonEl.prepend(previousSearchEl);
+};
+
+function previousSearchHandler(e){
+    const city = e.target.getAttribute("data-city")
+    if(city){
+        getCityWeather(city);
+        fiveDays(city);
+    }
+}
 
 cityFormEl.addEventListener("submit", submitSearch);
+previousSearchButtonEl.addEventListener("click", previousSearchHandler)

@@ -14,7 +14,8 @@ function getCityWeather(city) {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
     fetch(url)
         .then(function (response) {
-            response.json().then(function (data) {
+            response.json()
+            .then(function (data) {
                 displayWeatherData(data, city);
             });
         });
@@ -79,7 +80,8 @@ function uvIndex(lat, lon) {
     const url = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`
     fetch(url)
         .then(function (response) {
-            response.json().then(function (data) {
+            response.json()
+            .then(function (data) {
                 displayUvIndex(data)
                 // console.log(data)
             });
@@ -104,7 +106,8 @@ function fiveDays(city) {
     const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`
     fetch(url)
         .then(function (response) {
-            response.json().then(function (data) {
+            response.json()
+            .then(function (data) {
                 displayfiveDays(data);
             });
         });

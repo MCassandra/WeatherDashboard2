@@ -6,7 +6,7 @@ const cityInputEl = document.getElementById("city");
 const weatherContainerEl = document.getElementById("current-weather-container");
 const forecastTitle = document.getElementById("forecast");
 const forecastContainerEl = document.getElementById("fiveday-container");
-const previousSearchButtonEl = document.querySelector("#past-search-buttons");
+const previousSearchButtonEl = document.getElementById("previous-search-buttons");
 
 
 // make initial api call
@@ -21,7 +21,7 @@ function getCityWeather(city) {
 };
 
 // submit search for city
-function submitSearch(e){
+function submitSearch(e) {
     e.preventDefault();
     const city = cityInputEl.value.trim();
     getCityWeather(city);
@@ -37,9 +37,14 @@ function saveSearch() {
 // display the weather data from city search
 function displayWeatherData(weather, searchCity) {
     // console.log(weather);
-    // clear old inputs when search is submitted
+
     weatherContainerEl.textContent = "";
     citySearchInputEl.textContent = searchCity;
+
+    //create date element for todays date
+    var currentDate = document.createElement("span")
+    currentDate.textContent = " (" + moment(weather.dt.value).format("MMM D, YYYY") + ") ";
+    citySearchInputEl.appendChild(currentDate);
 
     //create element to hold temperature data
     const temperatureEl = document.createElement("span");
@@ -70,7 +75,7 @@ function displayWeatherData(weather, searchCity) {
     uvIndex(lat, lon);
 };
 
-function uvIndex(lat,lon) {
+function uvIndex(lat, lon) {
     const url = `https://api.openweathermap.org/data/2.5/uvi?appid=${apiKey}&lat=${lat}&lon=${lon}`
     fetch(url)
         .then(function (response) {
@@ -95,7 +100,7 @@ function displayUvIndex(index) {
 };
 
 
-function fiveDays(city){
+function fiveDays(city) {
     const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${apiKey}`
     fetch(url)
         .then(function (response) {
@@ -105,7 +110,7 @@ function fiveDays(city){
         });
 };
 
-function displayfiveDays(weather){
+function displayfiveDays(weather) {
     forecastContainerEl.textContent = ""
     forecastTitle.textContent = "Next 5 Day Forecast:";
 
@@ -151,23 +156,23 @@ function displayfiveDays(weather){
 
 };
 
-function previousSearch(previousSearch){
+function previousSearch(previousSearch) {
     const previousSearchEl = document.createElement("button");
     previousSearchEl.textContent = previousSearch;
     previousSearchEl.classList = "d-flex w-100 btn btn-info border p-2";
-    previousSearchEl.setAttribute("data-city",previousSearch)
+    previousSearchEl.setAttribute("data-city", previousSearch)
     previousSearchEl.setAttribute("type", "submit");
 
     previousSearchButtonEl.prepend(previousSearchEl);
 };
 
-function previousSearchHandler(e){
+function previousSearchHandler(e) {
     const city = e.target.getAttribute("data-city")
-    if(city){
+    if (city) {
         getCityWeather(city);
         fiveDays(city);
-    }
-}
+    };
+};
 
 cityFormEl.addEventListener("submit", submitSearch);
 previousSearchButtonEl.addEventListener("click", previousSearchHandler)
